@@ -19,13 +19,13 @@ jobs:
             pthreads-version: bc16ee7b5a21faee9bd1743f830f7135b763fb56
 
     name: PHP ${{ matrix.php }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Restore PHP build cache
         id: php-build-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/php
           key: php-build-${{ matrix.php }}-pthreads-${{ matrix.pthreads-version }}
@@ -46,7 +46,7 @@ jobs:
 
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: "~/.cache/composer"
           key: "php-${{ matrix.php }}-composer-${{ hashFiles('**/composer.json') }}"
